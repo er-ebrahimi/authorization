@@ -3,7 +3,7 @@ import { SparklesCore } from "@/components/ui/sparkles";
 
 export default function LoginPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br  flex flex-col items-center justify-center p-6 md:p-10">
+    <div className="min-h-screen bg-gradient-to-br bg-black flex flex-col items-center justify-center p-6 md:p-10">
       <div className="w-full max-w-sm md:max-w-md">
         <div className="w-full absolute inset-0 h-screen">
           <SparklesCore
