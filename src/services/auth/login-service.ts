@@ -17,17 +17,11 @@ const externalApi = axios.create({
  */
 export const loginApi = async (): Promise<LoginResponse> => {
   try {
-    // Fetch user data from randomuser.me
     const response = await externalApi.get<RandomUserResponse>(apis.login);
-
     const user = response.data.results[0];
-
-    // Generate a mock token (in real app, this would come from your backend)
     const token = `token_${Date.now()}_${Math.random()
       .toString(36)
       .substr(2, 9)}`;
-
-    // Transform the data to match our User interface
     const transformedUser = {
       id: user.login.uuid,
       name: `${user.name.first} ${user.name.last}`,

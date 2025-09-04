@@ -32,12 +32,12 @@ export function LoginForm({
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
     const convertedValue = convertToEnglishNumbers(inputValue);
-
     setDisplayValue(convertedValue);
     setValue("phone", convertedValue);
   };
 
-  const onSubmit = () => {
+  const onSubmit = (data: LoginFormData, event?: React.BaseSyntheticEvent) => {
+    event?.preventDefault();
     loginMutation.mutate();
   };
   return (
