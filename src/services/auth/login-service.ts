@@ -1,5 +1,6 @@
 import axios from "axios";
 import { RandomUserResponse, LoginResponse } from "@/types/api-types";
+import { apis } from "../apis";
 
 // Create axios instance for external APIs
 const externalApi = axios.create({
@@ -17,9 +18,7 @@ const externalApi = axios.create({
 export const loginApi = async (phone: string): Promise<LoginResponse> => {
   try {
     // Fetch user data from randomuser.me
-    const response = await externalApi.get<RandomUserResponse>(
-      "https://randomuser.me/api/?results=1&nat=us"
-    );
+    const response = await externalApi.get<RandomUserResponse>(apis.login);
 
     const user = response.data.results[0];
 

@@ -42,7 +42,6 @@ export function MobileMenu() {
                 )}
               </Link>
             ))}
-            <UserSetting />
           </div>
         </div>
       )}
