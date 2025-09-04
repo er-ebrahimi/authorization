@@ -2,12 +2,16 @@
 
 import { useAuth } from "@/contexts/auth-context";
 import { AuthWrapper } from "@/components/auth";
+import { StarsBackground } from "@/components/ui/stars-background";
+import { ShootingStars } from "@/components/ui/shooting-stars";
 
 export default function Home() {
   const { user, isAuthenticated } = useAuth();
   return (
     <AuthWrapper requireAuth={true}>
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
+      <div className="min-h-screen bg-gradient-to-br ">
+        <ShootingStars />
+        <StarsBackground />
         <div className="container mx-auto px-4 py-16">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
