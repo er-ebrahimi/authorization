@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { convertToEnglishNumbers } from "../../../lib/number-utils";
+import { convertToEnglishNumbers } from "../../number-utils";
 
 export const phoneSchema = z
   .string()

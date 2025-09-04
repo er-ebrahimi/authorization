@@ -47,8 +47,6 @@ export function setAuthData(token: string, user: User): void {
 
   localStorage.setItem(AUTH_KEYS.TOKEN, token);
   localStorage.setItem(AUTH_KEYS.USER, JSON.stringify(user));
-
-  // Also set as httpOnly cookie for better security
   document.cookie = `token=${token}; path=/; max-age=${
     7 * 24 * 60 * 60
   }; secure; samesite=strict`;
@@ -62,8 +60,6 @@ export function clearAuthData(): void {
 
   localStorage.removeItem(AUTH_KEYS.TOKEN);
   localStorage.removeItem(AUTH_KEYS.USER);
-
-  // Also clear the cookie
   document.cookie = "token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
 }
 

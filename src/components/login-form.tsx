@@ -4,15 +4,13 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useAuth } from "@/contexts";
-import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   loginSchema,
   type LoginFormData,
 } from "@/utils/validators/auth/login-zod";
-import { convertToEnglishNumbers } from "@/lib/number-utils";
+import { convertToEnglishNumbers } from "@/utils/number-utils";
 import { useLogin } from "@/hooks";
 import { useState } from "react";
 
@@ -24,7 +22,6 @@ export function LoginForm({
   const loginMutation = useLogin();
 
   const {
-    register,
     handleSubmit,
     formState: { errors },
     setValue,

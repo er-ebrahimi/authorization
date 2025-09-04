@@ -1,6 +1,4 @@
 "use client";
-
-import { User } from "lucide-react";
 import { useAuth } from "@/contexts/auth-context";
 import { LogoutButton } from "./logout-button";
 import {

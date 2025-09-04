@@ -4,27 +4,12 @@ import { useState } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useAuth } from "@/contexts/auth-context";
 import { getAllNavigationItems } from "@/config/navigation";
 import UserSetting from "../auth/user-setting";
 
 export function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false);
-  const { isAuthenticated, login } = useAuth();
-
-  const handleDemoLogin = () => {
-    const demoUser = {
-      id: "1",
-      email: "demo@example.com",
-      name: "Demo User",
-    };
-    const demoToken = "demo-token-123";
-    login(demoToken, demoUser);
-    setIsOpen(false);
-  };
-
   const navigationItems = getAllNavigationItems();
-
   return (
     <div className="md:hidden">
       <Button
