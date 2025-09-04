@@ -37,8 +37,8 @@ export function LoginForm({
     setValue("phone", convertedValue);
   };
 
-  const onSubmit = (data: LoginFormData) => {
-    loginMutation.mutate(data.phone);
+  const onSubmit = () => {
+    loginMutation.mutate();
   };
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>

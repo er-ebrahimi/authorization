@@ -15,7 +15,7 @@ const externalApi = axios.create({
  * @param phone - User's phone number
  * @returns Promise<LoginResponse>
  */
-export const loginApi = async (phone: string): Promise<LoginResponse> => {
+export const loginApi = async (): Promise<LoginResponse> => {
   try {
     // Fetch user data from randomuser.me
     const response = await externalApi.get<RandomUserResponse>(apis.login);

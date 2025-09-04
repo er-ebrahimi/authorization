@@ -6,7 +6,7 @@ import { UserProfile } from "./user-profile";
 import { useRouter } from "next/navigation";
 
 export default function UserSetting() {
-  const { isAuthenticated, login } = useAuth();
+  const { isAuthenticated } = useAuth();
   const { push } = useRouter();
 
   const handleLogin = () => {

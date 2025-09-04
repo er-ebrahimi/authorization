@@ -26,7 +26,7 @@ describe("loginApi", () => {
       token: "token_1234567890_abcdef123",
     };
     mockedLoginApi.mockResolvedValue(mockResponse);
-    const result = await loginApi("09123456789");
+    const result = await loginApi();
     expect(result).toHaveProperty("user");
     expect(result).toHaveProperty("token");
     expect(result.user).toHaveProperty("id");
@@ -45,7 +45,7 @@ describe("loginApi", () => {
     mockedLoginApi.mockRejectedValue(
       new Error("Failed to login. Please try again.")
     );
-    await expect(loginApi("09123456789")).rejects.toThrow(
+    await expect(loginApi()).rejects.toThrow(
       "Failed to login. Please try again."
     );
     expect(mockedLoginApi).toHaveBeenCalledWith("09123456789");

@@ -5,7 +5,6 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getAllNavigationItems } from "@/config/navigation";
-import UserSetting from "../auth/user-setting";
 
 export function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false);
