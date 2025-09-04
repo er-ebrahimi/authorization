@@ -1,5 +1,5 @@
 "use client";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/utils";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -8,33 +8,29 @@ import { useAuth } from "@/contexts";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { loginSchema, type LoginFormData } from "@/lib/validations";
+import {
+  loginSchema,
+  type LoginFormData,
+} from "@/utils/validators/auth/login-zod";
 import { convertToEnglishNumbers } from "@/lib/number-utils";
+import { useLogin } from "@/hooks";
 import { useState } from "react";
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
-  const { login } = useAuth();
-  const { push } = useRouter();
   const [displayValue, setDisplayValue] = useState("");
+  const loginMutation = useLogin();
 
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors },
     setValue,
   } = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
   });
-
-  const user = {
-    id: "1",
-    email: "demo@example.com",
-    name: "User",
-  };
-  const token = "demo-token-123";
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
@@ -45,9 +41,7 @@ export function LoginForm({
   };
 
   const onSubmit = (data: LoginFormData) => {
-    console.log("Login data:", data);
-    login(token, user);
-    push("/");
+    loginMutation.mutate(data.phone);
   };
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
@@ -77,9 +71,20 @@ export function LoginForm({
                 )}
               </div>
 
-              <Button className="w-full" type="submit" disabled={isSubmitting}>
-                {isSubmitting ? "Logging in..." : "Login"}
+              <Button
+                className="w-full"
+                type="submit"
+                disabled={loginMutation.isPending}
+              >
+                {loginMutation.isPending ? "Logging in..." : "Login"}
               </Button>
+
+              {loginMutation.isError && (
+                <p className="text-sm text-red-500 text-center">
+                  {loginMutation.error?.message ||
+                    "Login failed. Please try again."}
+                </p>
+              )}
             </div>
           </form>
         </CardContent>

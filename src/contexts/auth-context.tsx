@@ -1,11 +1,13 @@
 "use client";
 
 import React, { createContext, useContext, useState, useEffect } from "react";
+import { getAuthToken, getUser, setAuthData, clearAuthData } from "@/lib/auth";
 
 interface User {
   id: string;
   email: string;
   name: string;
+  picture: string;
 }
 
 interface AuthContextType {
@@ -24,31 +26,26 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     // Check for existing token and user data on mount
-    const token = localStorage.getItem("token");
-    const userData = localStorage.getItem("user");
+    const token = getAuthToken();
+    const userData = getUser();
 
     if (token && userData) {
-      try {
-        setUser(JSON.parse(userData));
-      } catch (error) {
-        console.error("Error parsing user data:", error);
-        localStorage.removeItem("token");
-        localStorage.removeItem("user");
-      }
+      setUser(userData);
+    } else if (token && !userData) {
+      // Token exists but no user data, clear invalid token
+      clearAuthData();
     }
 
     setIsLoading(false);
   }, []);
 
   const login = (token: string, userData: User) => {
-    localStorage.setItem("token", token);
-    localStorage.setItem("user", JSON.stringify(userData));
+    setAuthData(token, userData);
     setUser(userData);
   };
 
   const logout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
+    clearAuthData();
     setUser(null);
     // Redirect to login page
     window.location.href = "/login";
