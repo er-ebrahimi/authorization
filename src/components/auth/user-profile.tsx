@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { DropdownMenuGroup } from "@radix-ui/react-dropdown-menu";
 
 export function UserProfile() {
   const { user, isAuthenticated } = useAuth();
@@ -61,15 +62,17 @@ export function UserProfile() {
             </p>
           </div>
         </DropdownMenuLabel>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem asChild>
-          <LogoutButton
-            variant="ghost"
-            size="sm"
-            showText={true}
-            className="w-full justify-start p-2 h-auto font-normal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-          />
-        </DropdownMenuItem>
+        <DropdownMenuGroup>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem asChild>
+            <LogoutButton
+              variant="ghost"
+              size="sm"
+              showText={true}
+              className="w-full justify-start p-2 h-auto font-normal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            />
+          </DropdownMenuItem>
+        </DropdownMenuGroup>
       </DropdownMenuContent>
     </DropdownMenu>
   );

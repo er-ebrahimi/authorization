@@ -56,7 +56,7 @@ export const isValidKey = (key: string): boolean => {
  * @returns true if the key is an allowed control key
  */
 export const isAllowedControlKey = (key: string): boolean => {
-  return ALLOWED_KEYS.includes(key as any);
+  return (ALLOWED_KEYS as readonly string[]).includes(key);
 };
 
 /**
@@ -66,7 +66,10 @@ export const isAllowedControlKey = (key: string): boolean => {
  * @returns true if the shortcut is allowed
  */
 export const isAllowedShortcut = (key: string, ctrlKey: boolean): boolean => {
-  return ctrlKey && ALLOWED_SHORTCUTS.includes(key.toLowerCase() as any);
+  return (
+    ctrlKey &&
+    (ALLOWED_SHORTCUTS as readonly string[]).includes(key.toLowerCase())
+  );
 };
 
 /**
