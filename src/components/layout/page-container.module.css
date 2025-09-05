@@ -1,0 +1,10 @@
+.pageContainer {
+  width: 100%;
+  overflow: hidden;
+}
+
+.fullHeight {
+  height: 100vh;
+  margin-top: -4.05rem;
+  padding-top: 4.05rem;
+}
