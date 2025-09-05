@@ -4,9 +4,8 @@ import { useAuth } from "@/contexts/auth-context";
 import { AuthWrapper } from "@/components/auth";
 import { StarsBackground } from "@/components/ui/stars-background";
 import { ShootingStars } from "@/components/ui/shooting-stars";
-import { GlobeDemo } from "@/components/GlobeDemo";
 import { motion } from "motion/react";
-import { GlobeDemoLight } from "@/components/GlobeDemoLight";
+import { Globe } from "@/components/Globe";
 import { PageContainer } from "@/components/layout";
 
 export default function Home() {
@@ -18,11 +17,8 @@ export default function Home() {
           <ShootingStars />
           <StarsBackground />
 
-          <div className="absolute inset-0 w-full h-full z-0 top-40 dark:hidden ">
-            <GlobeDemoLight />
-          </div>
-          <div className="absolute inset-0 w-full h-full z-0 top-40 hidden dark:block">
-            <GlobeDemo />
+          <div className="absolute inset-0 w-full h-full z-0 ">
+            <Globe />
           </div>
 
           <div className="relative z-10 container mx-auto px-4 py-16">
