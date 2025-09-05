@@ -4,6 +4,16 @@ import { convertToEnglishNumbers } from "../../number-utils";
 export const phoneSchema = z
   .string()
   .min(1, "Phone number is required")
+  .refine(
+    (value) => {
+      const allowedPattern = /^[\u06F0-\u06F90-9+\s]*$/;
+      return allowedPattern.test(value);
+    },
+    {
+      message:
+        "Phone number can only contain Persian numbers (۰۱۲۳۴۵۶۷۸۹), English numbers (0123456789), plus (+), and spaces.",
+    }
+  )
   .transform((value) => convertToEnglishNumbers(value))
   .refine(
     (value) => {
@@ -21,7 +31,7 @@ export const phoneSchema = z
     },
     {
       message:
-        "Please enter a valid phone number (09xxxxxxxxx, +989xxxxxxxxx, or 00989xxxxxxxxx). Persian numbers are accepted.",
+        "Please enter a valid phone number (09xxxxxxxxx, +989xxxxxxxxx, or 00989xxxxxxxxx).",
     }
   );
 

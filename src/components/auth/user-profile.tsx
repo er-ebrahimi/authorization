@@ -29,14 +29,30 @@ export function UserProfile() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" className="relative h-8 w-8 rounded-full">
+        <Button
+          variant="ghost"
+          className="relative h-8 w-8 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+          aria-label={`User profile menu for ${user.name}`}
+          aria-haspopup="menu"
+          aria-expanded="false"
+        >
           <Avatar className="h-10 w-10">
-            <AvatarImage src={user.picture} alt={user.name} />
-            <AvatarFallback>{initials}</AvatarFallback>
+            <AvatarImage
+              src={user.picture}
+              alt={`Profile picture of ${user.name}`}
+            />
+            <AvatarFallback aria-label={`${user.name} initials`}>
+              {initials}
+            </AvatarFallback>
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56" align="end">
+      <DropdownMenuContent
+        className="w-56"
+        align="end"
+        role="menu"
+        aria-label="User profile menu"
+      >
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
             <p className="text-sm font-medium leading-none">{user.name}</p>
@@ -51,7 +67,7 @@ export function UserProfile() {
             variant="ghost"
             size="sm"
             showText={true}
-            className="w-full justify-start p-2 h-auto font-normal"
+            className="w-full justify-start p-2 h-auto font-normal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           />
         </DropdownMenuItem>
       </DropdownMenuContent>
