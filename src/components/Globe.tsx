@@ -2,11 +2,7 @@
 import React, { useMemo } from "react";
 import dynamic from "next/dynamic";
 import { useTheme } from "next-themes";
-import {
-  sampleArcs,
-  type GlobeConfig,
-  type GlobeArc,
-} from "./globe-shared-data";
+import { sampleArcs, type GlobeConfig } from "./globe-shared-data";
 
 const World = dynamic(() => import("./ui/globe").then((m) => m.World), {
   ssr: false,
@@ -49,7 +45,7 @@ export function Globe({ forceTheme }: GlobeProps) {
     [isDark]
   );
 
-  const { colors, processedArcs } = useMemo(() => {
+  const { processedArcs } = useMemo(() => {
     const themeColors = isDark
       ? ["#06b6d4", "#3b82f6", "#6366f1"]
       : ["#d1d3e8", "#3b82f6", "#a2c4fa"];
