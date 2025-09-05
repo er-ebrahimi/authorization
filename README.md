@@ -1,52 +1,101 @@
 # Authentication & Authorization App
 
-A modern Next.js application built with TypeScript, featuring authentication and authorization capabilities.
+A modern, responsive Next.js application featuring authentication, authorization, and a beautiful 3D globe interface with animated backgrounds. This project showcases best practices in React development with TypeScript, modern UI components, and comprehensive authentication handling.
 
-## 🚀 Tech Stack
+## 🌟 Features
 
-- **Next.js 15** - React framework with App Router
-- **TypeScript** - Type-safe JavaScript
-- **Tailwind CSS** - Utility-first CSS framework
-- **shadcn/ui** - Beautiful UI components
-- **React Query (TanStack Query)** - Data fetching and caching
-- **Axios** - HTTP client with interceptors
-- **next-themes** - Dark mode support
-- **ESLint** - Code linting and formatting
+### Authentication & Authorization
 
-## 📁 Project Structure
+- **Complete Authentication System** - Login with phone number validation
+- **JWT Token Management** - Secure token storage in localStorage and cookies
+- **Route Protection** - Middleware-based route protection with automatic redirects
+- **Authentication Context** - React Context for global auth state management
+- **Protected Routes** - `AuthWrapper` component for protecting pages and components
+- **Auto-logout** - Automatic token cleanup and redirect on auth failures
 
-```
-src/
-├── app/
-│   ├── api/
-│   │   └── health/
-│   │       └── route.ts          # Health check API endpoint
-│   ├── globals.css               # Global styles
-│   ├── layout.tsx                # Root layout with providers
-│   └── page.tsx                  # Homepage
-├── components/
-│   ├── providers.tsx             # React Query provider wrapper
-│   ├── theme-provider.tsx        # Theme provider for dark mode
-│   └── theme-toggle.tsx          # Dark mode toggle component
-└── lib/
-    ├── axios.ts                  # Configured Axios instance
-    ├── query-client.ts           # React Query client config
-    └── utils.ts                  # Utility functions (shadcn/ui)
-```
+### User Interface
 
-## 🛠️ Getting Started
+- **3D Interactive Globe** - Beautiful Three.js-powered globe with animated interactions
+- **Animated Backgrounds** - Shooting stars and dynamic star field animations
+- **Modern UI Components** - Built with shadcn/ui and Radix UI primitives
+- **Dark/Light Theme** - Theme switching with next-themes
+- **Responsive Design** - Mobile-first responsive design with Tailwind CSS
+- **Form Validation** - Comprehensive form validation with React Hook Form and Zod
+- **Phone Number Input** - Iran phone number validation with custom utilities
+- **Toast Notifications** - User feedback with Sonner toast library
+
+### Developer Experience
+
+- **TypeScript** - Full type safety throughout the application
+- **Testing Setup** - Jest and Testing Library configuration
+- **ESLint** - Code linting with Next.js recommended rules
+- **Modern React** - React 19 with concurrent features
+- **API Integration** - Axios-based API client with React Query for data fetching
+- **Hot Reload** - Turbopack for fast development and builds
+
+## 🛠️ Tech Stack
+
+### Frontend Framework
+
+- **Next.js 15.5.2** - React framework with App Router
+- **React 19.1.0** - Latest React with concurrent features
+- **TypeScript 5** - Full type safety
+
+### Styling & UI
+
+- **Tailwind CSS 4** - Utility-first CSS framework
+- **shadcn/ui** - Modern UI component library
+- **Radix UI** - Primitive components for accessibility
+- **next-themes** - Theme switching functionality
+- **Geist Font** - Modern typography
+
+### Animation & 3D
+
+- **Three.js** - 3D graphics library
+- **@react-three/fiber** - React renderer for Three.js
+- **@react-three/drei** - Three.js helpers and abstractions
+- **three-globe** - 3D globe visualization
+- **Motion (Framer Motion)** - Smooth animations
+- **@tsparticles** - Particle system for backgrounds
+
+### State Management & Data Fetching
+
+- **React Context** - Global authentication state
+- **TanStack Query (React Query)** - Server state management
+- **React Hook Form** - Form state management
+- **Zod** - Schema validation
+
+### Authentication & Validation
+
+- **Custom Auth System** - JWT token-based authentication
+- **Zod Validation** - Type-safe schema validation
+- **Phone Number Validation** - International phone format support
+- **Route Protection** - Middleware-based protection
+
+### Development Tools
+
+- **Jest** - Testing framework
+- **Testing Library** - Component testing utilities
+- **ESLint** - Code linting
+- **Turbopack** - Fast bundler for development
+
+### External APIs
+
+- **RandomUser API** - Mock user data for demonstration
+
+## 📦 Installation
 
 ### Prerequisites
 
-- Node.js 18+
-- npm or yarn
+- **Node.js** 18.17 or later
+- **npm** or **yarn** package manager
 
-### Installation
+### Setup Instructions
 
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/er-ebrahimi/authorization
+   git clone https://github.com/er-ebrahimi/authorization.git
    cd authorization
    ```
 
@@ -54,156 +103,278 @@ src/
 
    ```bash
    npm install
+   # or
+   yarn install
    ```
 
-3. **Set up environment variables**
+3. **Environment Configuration**
+
+   Copy the environment variables:
 
    ```bash
-   cp .env.example .env.local
+   cp .env.example .env
    ```
 
-   Edit `.env.local` with your configuration:
+   Update the environment variables in `.env`:
 
    ```env
    NEXT_PUBLIC_API_URL=http://localhost:3000/api
+   NEXT_PUBLIC_BACKEND_API_URL=https://randomuser.me/api
+   NEXTAUTH_URL=http://localhost:3000
    ```
 
 4. **Run the development server**
 
    ```bash
    npm run dev
+   # or
+   yarn dev
    ```
 
 5. **Open your browser**
-
    Navigate to [http://localhost:3000](http://localhost:3000)
 
-## 🎯 Features
+## 🚀 Available Scripts
 
-### ✅ Currently Implemented
+- `npm run dev` - Start development server with Turbopack
+- `npm run build` - Build production application
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint code linting
+- `npm run test` - Run Jest tests
+- `npm run test:watch` - Run tests in watch mode
 
-- **Next.js 15** with App Router and TypeScript
-- **Tailwind CSS** with dark mode support
-- **shadcn/ui** component library ready
-- **React Query** for data fetching with devtools
-- **Axios** with request/response interceptors
-- **Dark Mode Support** with system preference detection
-- **Beautiful Homepage** showcasing the tech stack
+## 📁 Project Structure
 
-### 🔧 Development Tools
+```
+src/
+├── app/                    # Next.js App Router pages
+│   ├── api/               # API routes (if any)
+│   ├── login/             # Login page
+│   ├── layout.tsx         # Root layout with providers
+│   └── page.tsx           # Home page with 3D globe
+├── components/            # Reusable React components
+│   ├── auth/              # Authentication components
+│   │   ├── auth-wrapper.tsx
+│   │   ├── logout-button.tsx
+│   │   └── user-profile.tsx
+│   ├── layout/            # Layout components
+│   │   ├── navbar.tsx
+│   │   └── page-container.tsx
+│   ├── ui/                # shadcn/ui components
+│   │   ├── button.tsx
+│   │   ├── card.tsx
+│   │   ├── globe.tsx
+│   │   └── ...
+│   ├── Globe.tsx          # Main 3D globe component
+│   ├── login-form.tsx     # Login form with validation
+│   └── providers.tsx      # App providers wrapper
+├── contexts/              # React contexts
+│   └── auth-context.tsx   # Authentication context
+├── hooks/                 # Custom React hooks
+│   ├── use-login.ts       # Login mutation hook
+│   └── index.ts
+├── lib/                   # Utility libraries
+│   ├── auth.ts           # Authentication utilities
+│   ├── axios.ts          # Axios configuration
+│   └── utils.ts          # General utilities
+├── services/             # API services
+│   ├── auth/
+│   │   └── login-service.ts
+│   └── apis.ts           # API endpoints configuration
+├── types/                # TypeScript type definitions
+│   └── api-types.ts
+├── utils/                # Utility functions
+│   ├── validators/       # Validation schemas
+│   │   └── auth/
+│   └── phone-input-utils.ts
+└── middleware.ts         # Next.js middleware for route protection
+```
 
-- **React Query Devtools** - Available in development mode
-- **ESLint** - Code quality and consistency
-- **TypeScript** - Full type safety
-- **Hot Reload** - Instant development feedback
+## 🔐 Authentication Flow
+
+### How Authentication Works
+
+1. **Login Process**
+
+   - User enters phone number in the login form
+   - Form validation using Zod schema
+   - API call to RandomUser API for mock authentication
+   - JWT token generation and user data retrieval
+   - Token stored in localStorage and cookies
+
+2. **Route Protection**
+
+   - Middleware checks for valid tokens on protected routes
+   - Automatic redirect to login page if unauthenticated
+   - AuthWrapper component for component-level protection
+
+3. **State Management**
+   - Global authentication state via React Context
+   - Automatic token validation on app initialization
+   - Persistent login across browser sessions
+
+### Login Credentials
+
+Since this is a demo application using RandomUser API, any valid phone number format will work:
+
+- `09xxxxxxxxx` (Iranian format)
+- `+989xxxxxxxxx` (Iranian format)
+- `00989xxxxxxxxx` (Alternative Iranian format)
 
 ## 🎨 UI Components
 
-The project uses **shadcn/ui** for consistent, accessible components. To add new components:
+### Custom Components
+
+- **Globe Component** - Interactive 3D globe with country data
+- **Animated Backgrounds** - Shooting stars and particle systems
+- **Login Form** - Comprehensive form with validation
+- **Navbar** - Responsive navigation with user menu
+- **Theme Toggle** - Dark/light mode switching
+
+### shadcn/ui Components
+
+- Buttons, Cards, Inputs, Labels
+- Dialog, Dropdown Menu, Popover
+- Avatar, Alert Dialog, Command Menu
+- Scroll Area, Toast notifications
+
+## 🧪 Testing
+
+The project includes comprehensive testing setup:
 
 ```bash
-npx shadcn@latest add button
-npx shadcn@latest add card
-npx shadcn@latest add input
+# Run all tests
+npm run test
+
+# Run tests in watch mode
+npm run test:watch
 ```
 
-## 🌙 Dark Mode
+### Testing Configuration
 
-The project includes full dark mode support using **next-themes**:
+- **Jest** with Next.js integration
+- **Testing Library** for component testing
+- **jsdom** environment for browser simulation
+- **Custom matchers** for enhanced assertions
 
-- **System Preference Detection** - Automatically follows your OS theme
-- **Manual Toggle** - Use the theme toggle button in the top-right corner
-- **Persistent Theme** - Your theme choice is saved across sessions
-- **Smooth Transitions** - Seamless switching between light and dark modes
+## 🔧 Configuration
 
-### Using the Theme Toggle
+### TypeScript Configuration
 
-```tsx
-import { ThemeToggle } from "@/components/theme-toggle";
+- Strict type checking enabled
+- Path aliases configured (`@/` for `src/`)
+- Next.js optimizations included
 
-// Add to any component
-<ThemeToggle />;
-```
+### Tailwind CSS
 
-### Programmatic Theme Control
+- Custom color system with CSS variables
+- shadcn/ui integration
+- Animation utilities included
+- Responsive design utilities
 
-```tsx
-import { useTheme } from "next-themes";
+### ESLint
 
-function MyComponent() {
-  const { theme, setTheme } = useTheme();
-
-  return (
-    <button onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
-      Toggle Theme
-    </button>
-  );
-}
-```
-
-## 🔐 Authentication Setup (Coming Soon)
-
-The project is pre-configured for authentication with:
-
-- **Axios interceptors** for automatic token handling
-- **React Query** for auth state management
-- **Environment variables** for secure configuration
-
-## 📝 Available Scripts
-
-```bash
-npm run dev          # Start development server
-npm run build        # Build for production
-npm run start        # Start production server
-npm run lint         # Run ESLint
-```
+- Next.js recommended rules
+- TypeScript integration
+- Custom rules for code quality
 
 ## 🌐 Environment Variables
 
-| Variable              | Description                | Default                     |
-| --------------------- | -------------------------- | --------------------------- |
-| `NEXT_PUBLIC_API_URL` | API base URL               | `http://localhost:3000/api` |
-| `DATABASE_URL`        | Database connection string | -                           |
-| `NEXTAUTH_SECRET`     | NextAuth secret key        | -                           |
-| `NEXTAUTH_URL`        | NextAuth URL               | `http://localhost:3000`     |
+| Variable                      | Description      | Default                     |
+| ----------------------------- | ---------------- | --------------------------- |
+| `NEXT_PUBLIC_API_URL`         | Internal API URL | `http://localhost:3000/api` |
+| `NEXT_PUBLIC_BACKEND_API_URL` | External API URL | `https://randomuser.me/api` |
+| `NEXTAUTH_URL`                | Application URL  | `http://localhost:3000`     |
 
 ## 🚀 Deployment
 
-### Vercel (Recommended)
-
-1. Push your code to GitHub
-2. Connect your repository to Vercel
-3. Deploy automatically
-
-### Other Platforms
+### Build for Production
 
 ```bash
 npm run build
 npm run start
 ```
 
-## 📚 Next Steps
+### Deployment Platforms
 
-- [ ] Implement user authentication
-- [ ] Add role-based authorization
-- [ ] Create user management dashboard
-- [ ] Add database integration
-- [ ] Implement protected routes
-- [ ] Add form validation
-- [ ] Create API documentation
+This application can be deployed on:
+
+- **Vercel** (recommended for Next.js)
+- **Netlify**
+- **Railway**
+- **AWS Amplify**
+- **Any Node.js hosting platform**
+
+## 📱 Features in Detail
+
+### Authentication Features
+
+- ✅ Phone number validation with multiple formats
+- ✅ Automatic token refresh handling
+- ✅ Secure token storage (localStorage + cookies)
+- ✅ Route-level protection with middleware
+- ✅ Component-level protection with AuthWrapper
+- ✅ Redirect to intended page after login
+
+### UI/UX Features
+
+- ✅ Responsive design for all screen sizes
+- ✅ Dark/light theme switching
+- ✅ Smooth animations and transitions
+- ✅ 3D interactive globe visualization
+- ✅ Particle system backgrounds
+- ✅ Toast notifications for user feedback
+- ✅ Loading states and error handling
+- ✅ Accessibility features (ARIA labels, foucs-visible states)
+
+### Developer Features
+
+- ✅ TypeScript for type safety
+- ✅ Comprehensive testing setup
+- ✅ Hot reload with Turbopack
+- ✅ Code linting and formatting
+- ✅ Path aliases for clean imports
+- ✅ API client with error handling
+- ✅ State management with React Query
+- ✅ Form validation with Zod schemas
 
 ## 🤝 Contributing
 
 1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Run tests and linting
-5. Submit a pull request
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-## 📄 License
+## 🆘 Troubleshooting
 
-This project is licensed under the MIT License.
+### Common Issues
+
+1. **Node.js Version**
+
+   - Ensure you're using Node.js 18.17 or later
+   - Use `node --version` to check your current version
+
+2. **Dependencies**
+
+   - Clear node_modules and reinstall: `rm -rf node_modules package-lock.json && npm install`
+
+3. **Environment Variables**
+
+   - Ensure `.env` file exists with correct variables
+   - Restart development server after changing environment variables
+
+4. **Build Issues**
+   - Clear Next.js cache: `rm -rf .next`
+   - Try building with legacy bundler: `npm run build` (without Turbopack)
+
+### Development Tips
+
+- Use React DevTools for debugging component state
+- Use TanStack Query DevTools for API debugging
+- Check browser console for authentication errors
+- Use network tab to monitor API calls
 
 ---
 
-**Happy coding! 🎉**
+**Built with ❤️ using Next.js, TypeScript, and modern web technologies.**
